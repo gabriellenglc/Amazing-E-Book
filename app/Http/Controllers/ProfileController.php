@@ -16,14 +16,14 @@ class ProfileController extends Controller
     public function update(Request $request, $id){
  
         $validate = $request->validate([
-            'first' => ['required','max:25'],
-            'middle' => ['max:25'],
-            'last' => ['required','max:25'],
+            'first' => ['required','max:25', 'alpha'],
+            'middle' => ['max:25', 'alpha'],
+            'last' => ['required','max:25', 'alpha'],
+            'gender' => ['required'],
             'email' => ['email:dns','required'],
             'role' => ['required'],
             'password' => ['required','min:8'],
-            'image' => ['required'],
-            'gender' => ['required'],
+            'image' => ['required', 'image', 'mimes:jpg,png,jpeg'],
         ]);
  
         if($validate){
